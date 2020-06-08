@@ -1,0 +1,1 @@
+type Lazy<A> = () => A
