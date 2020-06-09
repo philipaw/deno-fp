@@ -10,11 +10,11 @@ const cons = <A>(a: A) => (b: List<A>): List<A> => ({
   tail: b,
 })
 const head = <A>(xs: List<A>): A => {
-  if (!xs) throw new Error("Attempted to get head of an empty list")
+  if (!xs) throw new TypeError("Attempted to get head of an empty list")
   else return xs.head
 }
 const tail = <A>(xs: List<A>): List<A> => {
-  if (!xs) throw new Error("Attempted to get tail of an empty list")
+  if (!xs) throw new TypeError("Attempted to get tail of an empty list")
   else return xs.tail
 }
 
