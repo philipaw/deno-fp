@@ -81,6 +81,33 @@ Deno.test({
 })
 
 Deno.test({
+  name: "push test",
+  fn(): void {
+    const xs1 = push<string>(null)("bird")
+    assertEquals(xs1, { head: "bird", tail: null })
+
+    const xs2 = push(xs1)("dog")
+    assertEquals(xs2, { head: "dog", tail: xs1 })
+
+    const xs3 = push(xs2)("cat")
+    const expect = cons("cat")(cons("dog")(cons("bird")(null)))
+    assertEquals(xs3, expect)
+  },
+})
+
+Deno.test({
+  name: "drop test",
+  fn(): void {
+    assertEquals(drop(null)(1n), null)
+
+    const xs = cons("cat")(cons("dog")(cons("bird")(null)))
+    assertEquals(drop(xs)(1n), arrayToList(["dog", "bird"]))
+    assertEquals(drop(xs)(2n), arrayToList(["bird"]))
+    assertEquals(drop(xs)(3n), arrayToList([]))
+  },
+})
+
+Deno.test({
   name: "reverse test",
   fn(): void {
     const xs = cons("cat")(cons("dog")(cons("bird")(null)))
@@ -116,32 +143,5 @@ Deno.test({
     const threeFactorial = arrayToList([3, 2, 1])
     const evaluated = foldr(threeFactorial)(1)((x) => (z) => x * z)
     assertEquals(evaluated, 6)
-  },
-})
-
-Deno.test({
-  name: "push test",
-  fn(): void {
-    const xs1 = push<string>(null)("bird")
-    assertEquals(xs1, { head: "bird", tail: null })
-
-    const xs2 = push(xs1)("dog")
-    assertEquals(xs2, { head: "dog", tail: xs1 })
-
-    const xs3 = push(xs2)("cat")
-    const expect = cons("cat")(cons("dog")(cons("bird")(null)))
-    assertEquals(xs3, expect)
-  },
-})
-
-Deno.test({
-  name: "drop test",
-  fn(): void {
-    assertEquals(drop(null)(1n), null)
-
-    const xs = cons("cat")(cons("dog")(cons("bird")(null)))
-    assertEquals(drop(xs)(1n), arrayToList(["dog", "bird"]))
-    assertEquals(drop(xs)(2n), arrayToList(["bird"]))
-    assertEquals(drop(xs)(3n), arrayToList([]))
   },
 })
