@@ -1,4 +1,4 @@
-import { assertEquals } from "../deps.ts"
+import { assertEquals } from "../../deps.ts"
 import {
   List,
   cons,
@@ -9,7 +9,7 @@ import {
   length,
   arrayToList,
   listToArray,
-} from "../List/index.ts"
+} from "../../List/index.ts"
 
 Deno.test({
   name: "list.arrayToList",

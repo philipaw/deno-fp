@@ -1,5 +1,5 @@
-import { assertEquals } from "../deps.ts"
-import { arrayToList, filter, range } from "../List/index.ts"
+import { assertEquals } from "../../deps.ts"
+import { arrayToList, filter, range } from "../../List/index.ts"
 
 Deno.test({
   name: "list.filter",

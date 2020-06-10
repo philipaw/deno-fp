@@ -1,5 +1,5 @@
-import { assertEquals } from "../deps.ts"
-import { arrayToList, range, listToArray } from "../List/index.ts"
+import { assertEquals } from "../../deps.ts"
+import { arrayToList, listToArray, range } from "../../List/index.ts"
 
 Deno.test({
   name: "list.range",
