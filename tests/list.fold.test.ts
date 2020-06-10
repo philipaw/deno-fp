@@ -2,7 +2,7 @@ import { assertEquals } from "../deps.ts"
 import { List, cons, foldr, arrayToList } from "../List/index.ts"
 
 Deno.test({
-  name: "foldr",
+  name: "list.foldr",
   fn(): void {
     const xs: List<string> = cons("cat")(cons("dog")(cons("bird")(null)))
     const folded = foldr(xs)("")((z) => (x) => z + x + ". ")

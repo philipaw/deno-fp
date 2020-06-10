@@ -12,7 +12,7 @@ import {
 } from "../List/index.ts"
 
 Deno.test({
-  name: "arrayToList",
+  name: "list.arrayToList",
   fn(): void {
     const arr = [1, 2, 3, 4]
     const xs: List<number> = arrayToList(arr)
@@ -25,7 +25,7 @@ Deno.test({
 })
 
 Deno.test({
-  name: "listToArray",
+  name: "list.listToArray",
   fn(): void {
     const xs: List<string> = cons("cat")(cons("dog")(cons("bird")(null)))
     const arr = listToArray(xs)
@@ -36,7 +36,7 @@ Deno.test({
 })
 
 Deno.test({
-  name: "push",
+  name: "list.push",
   fn(): void {
     const xs1 = push<string>(null)("bird")
     assertEquals(xs1, { head: "bird", tail: null })
@@ -51,7 +51,7 @@ Deno.test({
 })
 
 Deno.test({
-  name: "drop",
+  name: "list.drop",
   fn(): void {
     assertEquals(drop(null)(1n), null)
 
@@ -63,7 +63,7 @@ Deno.test({
 })
 
 Deno.test({
-  name: "reverse",
+  name: "list.reverse",
   fn(): void {
     const xs: List<string> = cons("cat")(cons("dog")(cons("bird")(null)))
     const rev = reverse(xs)
@@ -75,7 +75,7 @@ Deno.test({
 })
 
 Deno.test({
-  name: "init",
+  name: "list.init",
   fn(): void {
     const xs: List<string> = cons("cat")(cons("dog")(cons("bird")(null)))
     const inited = init(xs)
@@ -89,7 +89,7 @@ Deno.test({
 })
 
 Deno.test({
-  name: "length",
+  name: "list.length",
   fn(): void {
     const xs: List<number> = arrayToList([1, 2, 3, 4])
     assertEquals(length(xs), 4)

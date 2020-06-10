@@ -2,7 +2,7 @@ import { assertEquals } from "../deps.ts"
 import { List, map, arrayToList } from "../List/index.ts"
 
 Deno.test({
-  name: "map",
+  name: "list.map",
   fn(): void {
     const xs: List<string> = arrayToList(["cat", "dog", "bird"])
     const mapped = map(xs)((s) => s.toUpperCase())

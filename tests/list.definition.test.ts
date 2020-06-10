@@ -2,7 +2,7 @@ import { assertEquals, assertThrows } from "../deps.ts"
 import { List, cons, head, tail } from "../List/index.ts"
 
 Deno.test({
-  name: "cons",
+  name: "list.cons",
   fn(): void {
     const xs: List<string> = null
     assertEquals(xs, null)
@@ -14,7 +14,7 @@ Deno.test({
 })
 
 Deno.test({
-  name: "head",
+  name: "list.head",
   fn(): void {
     const xs: List<number> = cons(2)(cons(3)(null))
     assertEquals(head(xs), 2)
@@ -32,7 +32,7 @@ Deno.test({
 })
 
 Deno.test({
-  name: "tail",
+  name: "list.tail",
   fn(): void {
     const xs: List<number> = cons(2)(cons(3)(null))
     assertEquals(tail(xs), { head: 3, tail: null })

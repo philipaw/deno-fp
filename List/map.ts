@@ -5,5 +5,5 @@ import { cons, foldl, List } from "./index.ts"
  * @param xs
  * @param f
  */
-export const map = <A>(xs: List<A>) => (f: (_: A) => A): List<A> =>
-  foldl(xs)<List<A>>(null)((z) => (x) => cons(f(x))(z))
+export const map = <A>(xs: List<A>) => (f: (x: A) => A): List<A> =>
+  foldl(xs)<List<A>>(null)((z) => (_x) => cons(f(_x))(z))
