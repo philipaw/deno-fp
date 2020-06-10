@@ -1,4 +1,4 @@
-import { List, cons } from "./list.ts"
+import { List, cons } from "./index.ts"
 
 export const range = (start: number) => (end: number): List<number> => {
   if (start >= end) return null
