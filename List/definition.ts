@@ -39,4 +39,16 @@ const head = <A>(xs: List<A>): A => {
 
 const tail = <A>(xs: List<A>): List<A> => (!xs ? xs : xs.tail)
 
-export { Nil, List, Cons, cons, head, tail }
+// takes a list and returns a generator for that list
+const consG = function* <A>(toIterate: List<A>) {
+  let node = toIterate
+
+  while (node !== null) {
+    yield head(node)
+    node = tail(node)
+  }
+
+  yield null
+}
+
+export { Nil, List, Cons, cons, consG, head, tail }

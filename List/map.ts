@@ -1,4 +1,4 @@
-import { cons, foldl, List } from "./index.ts"
+import { cons, foldr, List } from "./index.ts"
 
 /**
  * Takes a list, xs, and returns a new list with a function, f, applied to each member of xs
@@ -6,4 +6,4 @@ import { cons, foldl, List } from "./index.ts"
  * @param f
  */
 export const map = <A>(xs: List<A>) => (f: (x: A) => A): List<A> =>
-  foldl(xs)<List<A>>(null)((z) => (_x) => cons(f(_x))(z))
+  foldr(xs)<List<A>>(null)((z) => (_x) => cons(f(_x))(z))

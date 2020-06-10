@@ -1,5 +1,5 @@
 import { assertEquals, assertThrows } from "../../deps.ts"
-import { List, cons, head, tail } from "../index.ts"
+import { arrayToList, List, cons, consG, head, tail } from "../index.ts"
 
 Deno.test({
   name: "list.cons",
@@ -40,5 +40,19 @@ Deno.test({
     assertEquals(tail(xs2), xs)
     // empty case
     assertEquals(tail(null), null)
+  },
+})
+
+Deno.test({
+  name: "list.consG",
+  fn(): void {
+    const ar = [1, 2, 3]
+    const xs: List<number> = arrayToList(ar)
+    const xs_g = consG(xs)
+    let i = 1
+    for (let x in xs_g) {
+      assertEquals(x, i)
+      i += 1
+    }
   },
 })
