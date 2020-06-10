@@ -9,7 +9,7 @@ import {
   length,
   arrayToList,
   listToArray,
-} from "../../List/index.ts"
+} from "../index.ts"
 
 Deno.test({
   name: "list.arrayToList",

@@ -1,5 +1,5 @@
 import { assertEquals, assertThrows } from "../../deps.ts"
-import { List, cons, head, tail } from "../../List/index.ts"
+import { List, cons, head, tail } from "../index.ts"
 
 Deno.test({
   name: "list.cons",

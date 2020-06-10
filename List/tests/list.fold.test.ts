@@ -1,5 +1,5 @@
 import { assertEquals } from "../../deps.ts"
-import { List, cons, foldr, arrayToList } from "../../List/index.ts"
+import { List, cons, foldr, arrayToList } from "../index.ts"
 
 Deno.test({
   name: "list.foldr",
