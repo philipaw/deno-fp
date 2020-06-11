@@ -1,5 +1,12 @@
 import { assertEquals } from "../../deps.ts"
-import { List, cons, foldr, foldl, arrayToList } from "../index.ts"
+import {
+  List,
+  cons,
+  foldr,
+  foldl,
+  foldl_UNSAFE,
+  arrayToList,
+} from "../index.ts"
 
 Deno.test({
   name: "list.foldr",
@@ -21,8 +28,21 @@ Deno.test({
     const folded = foldl(xs)("")((z) => (x) => x + ". " + z)
     assertEquals(folded, "bird. dog. cat. ")
 
-    const threeDescending = arrayToList([3, 2, 1])
-    const evaluated = foldl(threeDescending)(0)((z) => (x) => x - z)
-    assertEquals(evaluated, 0)
+    const threeDescending = arrayToList([1, 2, 3])
+    const evaluated = foldl(threeDescending)(0)((z) => (x) => z - x)
+    assertEquals(evaluated, -6)
+  },
+})
+
+Deno.test({
+  name: "list.foldl_UNSAFE",
+  fn(): void {
+    const xs: List<string> = cons("cat")(cons("dog")(cons("bird")(null)))
+    const folded = foldl_UNSAFE(xs)("")((z) => (x) => x + ". " + z)
+    assertEquals(folded, "bird. dog. cat. ")
+
+    const threeDescending = arrayToList([1, 2, 3])
+    const evaluated = foldl_UNSAFE(threeDescending)(0)((z) => (x) => z - x)
+    assertEquals(evaluated, -6)
   },
 })

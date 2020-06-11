@@ -1,4 +1,4 @@
-import { consG, List, tail, head } from "./index.ts"
+import { List, tail, head } from "./index.ts"
 
 /**
  * @description: take a function which reduces from space A -> B and
@@ -13,7 +13,7 @@ export const foldr = <A>(xs: List<A>) => <B>(z: B) => (
 ): B => (xs === null ? z : f(foldr(tail(xs))(z)(f))(head(xs))) // javascript isnt actually tail end optimized (yet?)
 
 // this is functional, but poorly optimized because tail recursion isnt stack safe in js
-export const foldl = <A>(xs: List<A>) => <B>(z: B) => (
+export const foldl_UNSAFE = <A>(xs: List<A>) => <B>(z: B) => (
   f: (_z: B) => (x: A) => B
 ): B => {
   const loop = (_xs: List<A>) => (accum: B): B =>
@@ -21,7 +21,7 @@ export const foldl = <A>(xs: List<A>) => <B>(z: B) => (
   return loop(xs)(z)
 }
 
-export const _foldl = <A>(xs: List<A>) => <B>(z: B) => (
+export const foldl = <A>(xs: List<A>) => <B>(z: B) => (
   f: (_z: B) => (x: A) => B
 ): B => {
   let node = xs
