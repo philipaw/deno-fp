@@ -10,6 +10,9 @@
  *  6. no arrays
  *  7. no ifs (also also this)
  *
+ *  things about js:
+ *    It's fun to write, but recursion is expensive. Will mark recursive fns as UNSAFE.
+ *
  * {@link https://calebharris.github.io/fp_book_club_ts/chapter_3.html}
  * {@link ./testing/list.test.ts}
  *

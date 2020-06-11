@@ -21,6 +21,7 @@ export const foldl_UNSAFE = <A>(xs: List<A>) => <B>(z: B) => (
   return loop(xs)(z)
 }
 
+// iterative fast version
 export const foldl = <A>(xs: List<A>) => <B>(z: B) => (
   f: (_z: B) => (x: A) => B
 ): B => {
