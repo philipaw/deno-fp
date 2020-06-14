@@ -5,6 +5,8 @@ const wasmModule = new WebAssembly.Module(wasmCode)
 const wasmInstance = new WebAssembly.Instance(wasmModule)
 const { square } = wasmInstance.exports
 
+console.log(wasmInstance.exports)
+
 console.log(square(1))
 console.log(square(2))
 console.log(square(3))
