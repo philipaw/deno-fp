@@ -1,4 +1,4 @@
-import { cons, List, foldl, reverse } from "./index.ts"
+import { cons, List, foldr } from "./index.ts"
 
 /**
  * @description iterate over a list and return a new list with values that satisy the given boolean function
@@ -7,4 +7,4 @@ import { cons, List, foldl, reverse } from "./index.ts"
  * @param f function that applies to each element of the list and returns a boolean
  */
 export const filter = <A>(xs: List<A>) => (f: (x: A) => boolean): List<A> =>
-  reverse(foldl(xs)<List<A>>(null)((z) => (_x) => (!f(_x) ? z : cons(_x)(z))))
+  foldr(xs)<List<A>>(null)((z) => (_x) => (!f(_x) ? z : cons(_x)(z)))
