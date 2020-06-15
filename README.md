@@ -1,6 +1,6 @@
 # deno-fp
 
-### some fp experiments
+### some deno + functional programming experiments
 
 - List
 - Lazy
