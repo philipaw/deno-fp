@@ -1,4 +1,4 @@
-import { Lazy } from "../Lazy/index.ts"
+import { Lazy, lazy } from "../Lazy/index.ts"
 
 export type LazyList<A> = Lazy<{
   head: Lazy<A>
@@ -66,3 +66,23 @@ export const take = (n: Lazy<number>) => <A>(
       }
     : null
 }
+
+export const filter = <A>(f: Lazy<(x: Lazy<A>) => Lazy<boolean>>) => (
+  xs: LazyList<A>
+): LazyList<A> => {
+  const _xs = xs()
+  if (_xs === null) return () => null
+  else {
+    const _f = f()
+    const b = _f(_xs.head)()
+    return b
+      ? () => ({
+          head: _xs.head,
+          tail: filter(f)(_xs.tail),
+        })
+      : filter(f)(_xs.tail)
+  }
+}
+
+export const even = lazy((x: Lazy<number>) => lazy(x() % 2 === 0))
+export const odd = lazy((x: Lazy<number>) => lazy(x() % 2 !== 0))
