@@ -32,5 +32,37 @@ export const toLazyList = <A>(arr: [A]): LazyList<A> => {
   return xs
 }
 
-export const range = (begin: Lazy<number>): LazyList<number> =>
-  lzcons(begin)(range(() => begin() + 1))
+export const bad_range = (begin: Lazy<number>): LazyList<number> =>
+  lzcons(begin)(bad_range(() => begin() + 1)) // this results in a memory leak
+// () => 3
+// () => (() => 3)() + 1
+// () => (() => (() => 3)() + 1)() + 1
+
+// this creates an infinite list
+export const range = (begin: Lazy<number>): LazyList<number> => {
+  const b = begin()
+  return () => ({
+    head: () => b,
+    tail: range(() => b + 1),
+  })
+}
+
+export const printLzList = <A>(xs: LazyList<A>) => {
+  let node = xs()
+  while (node !== null) {
+    console.log(node.head())
+    node = node.tail()
+  }
+}
+
+export const take = (n: Lazy<number>) => <A>(
+  xs: LazyList<A>
+): LazyList<A> => () => {
+  let _n = n()
+  return _n > 0
+    ? {
+        head: lzhead(xs),
+        tail: take(() => _n - 1)(lztail(xs)),
+      }
+    : null
+}
